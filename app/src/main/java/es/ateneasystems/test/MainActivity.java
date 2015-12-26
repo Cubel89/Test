@@ -1,5 +1,6 @@
 package es.ateneasystems.test;
 
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -43,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             selectItem(drawerTitle);
         }
+
+        //FragmentManager fragmentManager = getFragmentManager();
+        //FragmentTransaction transaction = fragmentManager.beginTransaction();
+
 
     }
 
@@ -97,10 +102,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void selectItem(String title) {
         // Enviar título como arguemento del fragmento
-        Bundle args = new Bundle();
+        /*Bundle args = new Bundle();
         args.putString(PlaceholderFragment.ARG_SECTION_TITLE, title);
+        */
 
-        Fragment fragment = PlaceholderFragment.newInstance(title);
+       /* Fragment fragment = PlaceholderFragment.newInstance(title);
         fragment.setArguments(args);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager
@@ -109,8 +115,16 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
 
         drawerLayout.closeDrawers(); // Cerrar drawer
+        setTitle(title); // Setear título actual*/
 
-        setTitle(title); // Setear título actual
+        Fragment fragment = null;
+        fragment = new PruebasConexion();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_content, fragment)
+                .commit();
+
+        drawerLayout.closeDrawers(); // Cerrar drawer
+        setTitle(title); // Setear título actual*/
 
     }
 
